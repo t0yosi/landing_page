@@ -5,7 +5,14 @@ import {
 } from "@dotlottie/react-player";
 import Image from "next/image";
 import productImage from "@/assets/product-image.png";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import {
+  animate,
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  ValueAnimationTransition,
+} from "framer-motion";
 
 const tabs = [
   {
@@ -35,7 +42,36 @@ const tabs = [
 ];
 
 const FeatureTab = (tab: (typeof tabs)[number]) => {
+  const tabRef = useRef<HTMLDivElement>(null);
   const dotLottieRef = useRef<DotLottieCommonPlayer>(null);
+
+  const xPercentage = useMotionValue(0);
+  const yPercentage = useMotionValue(0);
+
+  const maskImage = useMotionTemplate`radial-gradient(80px 80px at ${xPercentage}% ${yPercentage}%, black, transparent)`;
+
+  useEffect(() => {
+    if (!tabRef.current) return;
+    const { height, width } = tabRef.current?.getBoundingClientRect();
+    const circumference = height * 2 + width * 2;
+
+    const times = [
+      0,
+      width / circumference,
+      (width + height) / circumference,
+      (width * 2 + height) / circumference,
+      1,
+    ];
+    const options: ValueAnimationTransition = {
+      times,
+      duration: 4,
+      repeat: Infinity,
+      ease: "linear",
+      repeatType: "loop",
+    };
+    animate(xPercentage, [0, 100, 100, 0, 0], options);
+    animate(yPercentage, [0, 0, 100, 100, 0], options);
+  }, []);
 
   const handleTabHover = () => {
     dotLottieRef.current?.seek(0);
@@ -44,9 +80,16 @@ const FeatureTab = (tab: (typeof tabs)[number]) => {
 
   return (
     <div
+      ref={tabRef}
       onMouseEnter={handleTabHover}
-      className="border border-white/15 flex p-2.5 gap-2.5 rounded-xl items-center lg:flex-1"
+      className="border border-white/15 flex p-2.5 gap-2.5 rounded-xl items-center lg:flex-1 relative"
     >
+      <motion.div
+        style={{
+          maskImage: maskImage,
+        }}
+        className="absolute inset-0 -m-px border rounded-xl  border-orange-600"
+      ></motion.div>
       <div className="size-12 border border-white/15 rounded-lg inline-flex items-center justify-center">
         <DotLottiePlayer
           ref={dotLottieRef}
