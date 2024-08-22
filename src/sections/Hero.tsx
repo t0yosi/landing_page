@@ -115,7 +115,7 @@ export const Hero = () => {
           RXA DEV
         </h1>
         <p className="text-lg md:text-xl text-white/70 mt-5 text-center max-w-xl mx-auto">
-          Maximize your business' potential with digital solutions, where smart
+          Maximize your business potential with digital solutions, where smart
           technology meets user-friendly design.
         </p>
         <div className="flex justify-center mt-5 pt-10">

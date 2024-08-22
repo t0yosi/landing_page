@@ -78,7 +78,7 @@ const FeatureTab = (
     };
     animate(xPercentage, [0, 100, 100, 0, 0], options);
     animate(yPercentage, [0, 0, 100, 100, 0], options);
-  }, [props.selected]);
+  }, [props.selected, xPercentage, yPercentage]);
 
   const handleTabHover = () => {
     dotLottieRef.current?.seek(0);
