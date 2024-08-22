@@ -1,5 +1,7 @@
+"use client";
 import { Button } from "@/components/Button";
 import starsBg from "@/assets/stars.png";
+import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
@@ -16,13 +18,27 @@ export const Hero = () => {
       {/* End Planet */}
 
       {/* Start Ring 1 */}
-      <div className="absolute size-[364px] md:size-[600px] border opacity-20 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <motion.div
+        style={{
+          translateY: '-50%',
+          translateX: '-50%',
+        }}
+        animate={{
+          rotate: "1turn",
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute size-[364px] md:size-[600px] border opacity-20 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      >
         <div className="absolute size-2 top-1/2 left-0 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute size-2 top-1/2 left-full  bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute size-5 top-0 left-1/2 border border-white rounded-full -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center ">
           <div className="size-2 bg-white rounded full"></div>
         </div>
-      </div>
+      </motion.div>
       {/* End Ring 1 */}
 
       {/* Start Ring 2 */}
