@@ -20,14 +20,14 @@ export const Hero = () => {
       {/* Start Ring 1 */}
       <motion.div
         style={{
-          translateY: '-50%',
-          translateX: '-50%',
+          translateY: "-50%",
+          translateX: "-50%",
         }}
         animate={{
           rotate: "1turn",
         }}
         transition={{
-          duration: 30,
+          duration: 45,
           repeat: Infinity,
           ease: "linear",
         }}
@@ -42,7 +42,21 @@ export const Hero = () => {
       {/* End Ring 1 */}
 
       {/* Start Ring 2 */}
-      <div className="absolute size-[444px] md:size-[780px] top-1/2 left-1/2 border border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2 border-dashed"></div>
+      <motion.div
+        style={{
+          translateY: "-50%",
+          translateX: "-50%",
+        }}
+        animate={{
+          rotate: "-1turn",
+        }}
+        transition={{
+          duration: 60,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute size-[444px] md:size-[780px] top-1/2 left-1/2 border border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2 border-dashed"
+      ></motion.div>
       {/* End Ring 2 */}
 
       {/* Start Ring 3 */}
